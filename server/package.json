@@ -1,0 +1,36 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "The Algoholic Server app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andrii-maglovanyi/algoholic.git"
+  },
+  "main": "index.ts",
+  "scripts": {
+    "build": "npm run lint && tsc && copyfiles --verbose .env ./src/**/*.graphql ./dist/",
+    "lint": "tsc --noEmit && eslint --ext .ts . --fix",
+    "start": "node ./dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "nodemon -e ts,graphql --exec ts-node index.ts"
+  },
+  "author": "Andrii Maglovanyi <andrii.maglovanyi@gmail.com> (http://algoholic.dev/)",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@koa/cors": "^3.0.0",
+    "apollo-server-koa": "^2.11.0",
+    "firebase-admin": "^8.10.0",
+    "merge-graphql-schemas": "^1.7.6",
+    "mysql2": "^2.1.0",
+    "sequelize": "^5.21.5",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.11.2",
+    "@types/sequelize": "^4.28.8",
+    "copyfiles": "^2.2.0",
+    "eslint": "^6.8.0",
+    "nodemon": "^2.0.2",
+    "ts-node": "^8.8.1"
+  }
+}

@@ -1,0 +1,65 @@
+enum Type {
+  array
+  bigO
+  graph
+  linear
+  nonLinear
+  queue
+  stack
+  tree
+}
+
+type Topic {
+  id: ID!
+  name: String!
+  description: String!
+  type: Type
+  subject: Subject!
+  quiz: Quiz
+}
+
+type Subject {
+  id: ID!
+  degree: Int!
+  description: String!
+  name: String!
+  type: Type
+  topics: [Topic]!
+}
+
+type Progress {
+  id: String!
+}
+
+type User {
+  id: ID!
+  progress: [Progress]!
+}
+
+type CheckResult {
+  result: Boolean!
+}
+
+type Mutation {
+  checkAnswer(id: ID!, num: Int!): CheckResult!
+  signUp: User
+}
+
+type Quiz {
+  id: ID!
+  question: String!
+  answer1: String!
+  answer2: String!
+  answer3: String!
+  answer4: String!
+  correctAnswer: Int!
+}
+
+type Query {
+  progress: [Progress]
+  quiz(id: ID!): Quiz!
+  topic(id: ID!): Topic!
+  topics: [Topic!]!
+  subjects: [Subject!]!
+  subject(id: ID!): Subject!
+}

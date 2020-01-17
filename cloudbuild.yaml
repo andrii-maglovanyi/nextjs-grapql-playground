@@ -1,0 +1,45 @@
+steps:
+  - name: gcr.io/cloud-builders/gcloud
+    args:
+      [
+        "kms",
+        "decrypt",
+        "--ciphertext-file=server/.env.enc",
+        "--plaintext-file=server/.env",
+        "--location=us-central1",
+        "--keyring=algo-keyring",
+        "--key=cloudbuild-env",
+      ]
+  - name: gcr.io/cloud-builders/gcloud
+    args:
+      [
+        "kms",
+        "decrypt",
+        "--ciphertext-file=web/.env.enc",
+        "--plaintext-file=web/.env",
+        "--location=us-central1",
+        "--keyring=algo-keyring",
+        "--key=cloudbuild-env",
+      ]
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      [
+        "build",
+        "-t",
+        "gcr.io/$PROJECT_ID/github.com/andrii-maglovanyi/algoholic:$REVISION_ID",
+        ".",
+      ]
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      [
+        "push",
+        "gcr.io/$PROJECT_ID/github.com/andrii-maglovanyi/algoholic:$REVISION_ID",
+      ]
+  - name: "gcr.io/cloud-builders/gcloud"
+    args:
+      [
+        "app",
+        "deploy",
+        "--image-url=gcr.io/${PROJECT_ID}/github.com/andrii-maglovanyi/algoholic:${REVISION_ID}",
+      ]
+timeout: "2000s"

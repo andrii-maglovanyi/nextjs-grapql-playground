@@ -1,0 +1,15 @@
+env: flex
+runtime: custom
+
+beta_settings:
+  cloud_sql_instances: algoholic-dev:us-central1:algodb=tcp:3306
+
+env_variables:
+  NODE_ENV: production
+
+manual_scaling:
+  instances: 1
+resources:
+  cpu: 1
+  memory_gb: 0.5
+  disk_size_gb: 10

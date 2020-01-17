@@ -1,0 +1,48 @@
+{
+  "name": "web",
+  "version": "1.0.0",
+  "description": "The Algoholic Web app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andrii-maglovanyi/algoholic.git"
+  },
+  "scripts": {
+    "build": "next build",
+    "lint": "eslint . --fix",
+    "start": "next start -p 8080",
+    "test": "jest --watchAll",
+    "watch": "next -p 7777"
+  },
+  "author": "Andrii Maglovanyi <andrii.maglovanyi@gmail.com> (http://algoholic.dev/)",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@apollo/react-hooks": "^3.1.3",
+    "apollo-cache-inmemory": "^1.6.5",
+    "apollo-client": "^2.6.8",
+    "apollo-link-context": "^1.0.19",
+    "apollo-link-http": "^1.5.16",
+    "firebase": "^7.12.0",
+    "graphql-tag": "^2.10.3",
+    "markdown-to-jsx": "^6.11.0",
+    "next": "^9.3.1",
+    "next-with-apollo": "^5.0.0",
+    "react-redux": "^7.2.0",
+    "styled-components": "^5.0.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@testing-library/jest-dom": "^5.1.1",
+    "@testing-library/react": "^10.0.1",
+    "@types/markdown-to-jsx": "^6.11.0",
+    "@types/styled-components": "^5.0.1",
+    "babel-eslint": "^10.1.0",
+    "babel-plugin-styled-components": "^1.10.7",
+    "babel-preset-jest": "^25.1.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-cypress": "^2.10.3",
+    "eslint-plugin-jest": "^23.8.2",
+    "eslint-plugin-react-hooks": "^2.5.1",
+    "eslint-plugin-sort-keys-fix": "^1.1.0",
+    "jest": "^25.1.0"
+  }
+}

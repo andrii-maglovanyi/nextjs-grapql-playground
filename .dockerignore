@@ -1,0 +1,16 @@
+**/.next/
+**/dist/
+**/node_modules/
+**/npm-debug.log
+**/.DS_Store
+.dockerignore
+.editorconfig
+.gitignore
+.git/
+.scannerwork/
+.vscode/
+Dockerfile*
+LICENSE
+README.md
+docker-compose*
+npm-debug.log
