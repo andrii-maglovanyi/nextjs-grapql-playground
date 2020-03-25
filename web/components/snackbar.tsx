@@ -4,7 +4,7 @@ import styled from "styled-components";
 export type Type = "error" | "success";
 
 const SnackbarComponent = styled.div`
-  background-color: var(--primary-black);
+  background-color: var(--primary-black-color);
   bottom: 2px;
   color: var(--primary-white);
   font-size: 0.7rem;
@@ -26,8 +26,8 @@ const SnackbarComponent = styled.div`
       `var(--${props.type}-color)`};
     background-image: repeating-linear-gradient(
       -45deg,
-      var(--primary-black),
-      var(--primary-black) 5px,
+      var(--primary-black-color),
+      var(--primary-black-color) 5px,
       transparent 5px,
       transparent 10px
     );
@@ -47,7 +47,7 @@ const SnackbarComponent = styled.div`
   }
 
   &.error {
-    border-bottom-color: var(--error-color);
+    border-bottom-color: var(--danger-color);
   }
 
   &.success {
@@ -94,7 +94,7 @@ const Snackbar: React.FC<Props> = ({ index, onHide, text, type }) => {
     error: "fire",
     info: "info-circled",
     success: "ok",
-    warning: "warning-empty"
+    warning: "warning-empty",
   };
 
   useEffect(() => {

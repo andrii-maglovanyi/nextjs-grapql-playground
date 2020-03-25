@@ -82,7 +82,7 @@ const Wrapper = styled.ul`
 
   .leave {
     background: #f9f9f9;
-    border-radius: 3px;
+    border-radius: var(--primary-border-radius);
     box-sizing: border-box;
     padding: 1rem;
   }
@@ -91,7 +91,7 @@ const Wrapper = styled.ul`
     .topic-section {
       box-sizing: border-box;
       margin-top: 20px;
-      border-radius: 3px;
+      border-radius: var(--primary-border-radius);
       background: white;
       margin-left: 50%;
       box-shadow: -2px 2px 0 0 #ccc;
@@ -125,13 +125,19 @@ const Wrapper = styled.ul`
           left: -40px;
         }
       }
+
+      &:hover {
+        .show-on-hover {
+          display: block;
+        }
+      }
     }
   }
 
   .subject-section {
     position: absolute;
     width: calc(50% - 40px);
-    border-radius: 3px;
+    border-radius: var(--primary-border-radius);
     background: #f9f9f9;
     box-shadow: 2px 2px 0 0 #ccc;
     padding: 1rem;
@@ -183,19 +189,21 @@ const Head = styled.h2`
 `;
 
 const LessonButton = styled.a`
-  background-color: var(--active-color);
+  border: 1px solid #ccc;
   border-radius: var(--primary-border-radius);
-  box-shadow: var(--primary-shadow);
-  color: white;
+  color: var(--secondary-black-color);
   cursor: pointer;
+  display: none;
   float: right;
-  margin-top: 3rem;
-  padding: 0.4rem 1.2rem;
-  position: relative;
+  font-size: 0.8rem;
+  padding: 0.1rem 0.5rem;
   text-decoration: none;
+  text-transform: initial;
 
   &:hover {
-    color: var(--primary-black);
+    color: white;
+    background-color: var(--active-color);
+    border-color: var(--active-color);
   }
 `;
 
@@ -250,7 +258,18 @@ const Index = withLayout(() => {
 
   const renderContentBlock = (item: Topic | Subject) => (
     <div className="content">
-      <Head onClick={() => toggleItem(item.id + item.name)}>{item.name}</Head>
+      <Head onClick={() => toggleItem(item.id + item.name)}>
+        {item.name}
+        <Link href={`/p/${item.id}`}>
+          <LessonButton
+            className="show-on-hover"
+            onClick={(e) => e.stopPropagation()}
+            title={item.name}
+          >
+            Take a shot
+          </LessonButton>
+        </Link>
+      </Head>
       <div className={"section " + isVisible(item.id + item.name)}>
         <Markdown
           children={item.description}
@@ -262,9 +281,6 @@ const Index = withLayout(() => {
             },
           }}
         />
-        <Link href={`/p/${item.id}`}>
-          <LessonButton title={item.name}>Quiz</LessonButton>
-        </Link>
       </div>
     </div>
   );

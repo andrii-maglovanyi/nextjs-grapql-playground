@@ -4,7 +4,7 @@ const HrComponent = styled.hr`
   background: var(--primary-white);
   border: none;
   box-sizing: border-box;
-  color: var(--primary-black);
+  color: var(--primary-black-color);
   height: 1px;
   margin: 1.5rem auto;
   overflow: visible;

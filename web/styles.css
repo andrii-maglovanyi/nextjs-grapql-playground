@@ -1,14 +1,13 @@
 @import "/styles/prism-drakula.css";
 
-#__next {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-
 :root {
   --active-color: #ffa500;
-  --error-color: #ff6961;
+  --danger-color: #d9534f;
+  --danger-color-light: #fff2f2;
+  --success-color: #00bf88;
+  --success-color-light: #f1fdf9;
+  --inactive-color: #eee;
+  --inactive-color-light: #f7f7f7;
   --gray: rgba(0, 0, 0, 0.075);
   --modal-background-color: rgba(0, 0, 0, 0.15);
   --modal-border-radius: 50px;
@@ -16,14 +15,17 @@
   --primary-animation-duration: 0.3s;
   --primary-background-color: #fbfbfb;
   --primary-border-radius: 3px;
-  --primary-black: #272727;
+  --primary-black-color: #454545;
+  --secondary-black-color: #878787;
+  --text-contrast-color: #272727;
   --primary-white: #eeeeee;
 
   --primary-glow: 0px 0px 1px #fff;
   --primary-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  --danger-shadow: 0 0 3px rgba(217, 83, 89, 0.5);
+  --success-shadow: 0 0 3px rgba(0, 191, 136, 0.5);
   --primary-cubic-bezier-animation: cubic-bezier(0.27, 1.01, 0.67, 1.22);
-  --secondary-black-color: #878787;
-  --success-color: #77dd77;
+
   --text-shadow-color-white: 0px 0px 1px #fff;
 }
 
@@ -40,10 +42,26 @@
 
 body {
   background-color: var(--primary-background-color);
-  color: var(--primary-black);
+  color: var(--primary-black-color);
   font-family: "Open Sans", sans-serif;
   margin: 0;
   padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong {
+  color: var(--text-contrast-color);
+}
+
+#__next {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
 .icon {

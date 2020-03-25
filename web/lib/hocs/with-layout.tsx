@@ -2,6 +2,7 @@ import { NextPage } from "next";
 import { ApolloError } from "apollo-client";
 
 import Header from "containers/header";
+import Footer from "containers/footer";
 import SnackbarProvider from "lib/hooks/use-snackbar";
 
 type Props = {
@@ -16,6 +17,7 @@ const withLayout = (Page: NextPage<Props>): NextPage => {
     <SnackbarProvider>
       <Header />
       <Page {...props} />
+      <Footer />
     </SnackbarProvider>
   );
 

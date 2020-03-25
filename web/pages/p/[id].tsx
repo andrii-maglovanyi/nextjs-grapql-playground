@@ -11,27 +11,27 @@ import withLayout from "lib/hocs/with-layout";
 import withApollo from "lib/hocs/with-apollo";
 import useAuth from "lib/hooks/use-auth";
 
-import { Store } from "store";
-
 import { Code, Empty, Error, Spinner } from "components";
 
 const Wrapper = styled.div`
   display: flex;
   flex-grow: 1;
   flex-direction: column;
+`;
+
+const Content = styled.section`
   margin: auto;
   max-width: 900px;
   width: 90%;
 `;
 
-const Topic = styled.div`
+const Topic = styled(Content)`
   height: auto;
 `;
 
 const QuizWrapper = styled.div`
-  background-color: var(--primary-background-color);
+  background-color: white;
   padding: 2rem;
-  flex-grow: 1;
   position: relative;
 `;
 
@@ -40,20 +40,49 @@ const Question = styled.div`
   font-weight: bold;
 `;
 
+const Answers = styled.div`
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 1rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+`;
+
 const Answer = styled.div`
   background-color: white;
   border-radius: var(--primary-border-radius);
   box-shadow: var(--primary-shadow);
   cursor: pointer;
-  margin: 1rem 0;
   padding: 1rem;
 
+  span {
+    box-sizing: border-box;
+    color: inherit;
+    display: inline-block;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    margin-right: 1rem;
+    opacity: 0.3;
+    text-align: center;
+    width: 1.5rem;
+  }
+
+  &:hover {
+    background-color: var(--inactive-color-light);
+  }
+
   &.falsy {
-    color: red;
+    background-color: var(--danger-color-light);
+    box-shadow: var(--danger-shadow);
+    color: var(--danger-color);
   }
 
   &.truthy {
-    color: green;
+    background-color: var(--success-color-light);
+    box-shadow: var(--success-shadow);
+    color: var(--success-color);
   }
 `;
 
@@ -114,7 +143,7 @@ const Quiz: React.FC<Props> = ({ topicId }) => {
     setSelectedAnswer(num);
     checkAnswer({
       variables: {
-        id: data.topic.id,
+        id: topicId,
         num,
       },
     });
@@ -129,22 +158,26 @@ const Quiz: React.FC<Props> = ({ topicId }) => {
 
   return (
     <QuizWrapper>
-      {loading && <Spinner />}
-      {error ? <Error>{error.message}</Error> : null}
-      {data?.quiz ? (
-        <>
-          <Question>{data.quiz.question}</Question>
-          {[1, 2, 3, 4].map((num) => (
-            <Answer
-              className={isCorrectAnswer(num)}
-              key={num}
-              onClick={() => onSelectAnswer(num)}
-            >
-              {data.quiz[`answer${num}`]}
-            </Answer>
-          ))}
-        </>
-      ) : null}
+      <Content>
+        {loading && <Spinner />}
+        {error ? <Error>{error.message}</Error> : null}
+        {data?.quiz ? (
+          <>
+            <Question>{data.quiz.question}</Question>
+            <Answers>
+              {[1, 2, 3, 4].map((num) => (
+                <Answer
+                  className={isCorrectAnswer(num)}
+                  key={num}
+                  onClick={() => onSelectAnswer(num)}
+                >
+                  <span>{num}</span> {data.quiz[`answer${num}`]}
+                </Answer>
+              ))}
+            </Answers>
+          </>
+        ) : null}
+      </Content>
     </QuizWrapper>
   );
 };

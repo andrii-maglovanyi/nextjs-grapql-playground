@@ -28,7 +28,7 @@ const Wrapper = styled.header`
 
   .header-item {
     box-sizing: border-box;
-    color: var(--primary-black);
+    color: var(--primary-black-color);
 
     .sign-in {
       cursor: pointer;
