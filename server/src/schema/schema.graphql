@@ -57,7 +57,7 @@ type Quiz {
 
 type Query {
   progress: [Progress]
-  quiz(id: ID!): Quiz!
+  quiz(id: ID!): Quiz
   topic(id: ID!): Topic!
   topics: [Topic!]!
   subjects: [Subject!]!

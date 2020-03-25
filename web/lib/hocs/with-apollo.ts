@@ -9,7 +9,7 @@ import { auth } from "../../firebase";
 
 export default withApollo(({ initialState }) => {
   const httpLink = createHttpLink({
-    uri: `${process.env.API_HOST}/api`
+    uri: `${process.env.API_HOST}/api`,
   });
 
   const authorizationHeaderLink = setContext(async (_, { headers }) => {
@@ -17,17 +17,18 @@ export default withApollo(({ initialState }) => {
     const authorizationHeader = idToken
       ? { authorization: `Bearer ${idToken}` }
       : null;
+
     return {
       headers: {
         ...headers,
-        ...authorizationHeader
-      }
+        ...authorizationHeader,
+      },
     };
   });
 
   return new ApolloClient({
     link: authorizationHeaderLink.concat(httpLink),
     cache: new InMemoryCache().restore(initialState || {}),
-    connectToDevTools: true
+    connectToDevTools: true,
   });
 });

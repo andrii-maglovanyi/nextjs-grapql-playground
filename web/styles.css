@@ -1,8 +1,16 @@
+@import "/styles/prism-drakula.css";
+
+#__next {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
 :root {
   --active-color: #ffa500;
   --error-color: #ff6961;
   --gray: rgba(0, 0, 0, 0.075);
-  --modal-background-color: rgba(52, 52, 52, 0.8);
+  --modal-background-color: rgba(0, 0, 0, 0.15);
   --modal-border-radius: 50px;
   --overlay-color: rgba(0, 0, 0, 0.8);
   --primary-animation-duration: 0.3s;

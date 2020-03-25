@@ -12,7 +12,7 @@ type Props = {
 };
 
 const withLayout = (Page: NextPage<Props>): NextPage => {
-  const Layout: NextPage<Props> = props => (
+  const Layout: NextPage<Props> = (props) => (
     <SnackbarProvider>
       <Header />
       <Page {...props} />

@@ -1,5 +1,9 @@
 {
-  "emailAndPasswordAuthentication": {
+  "signin": {
+    "email": "renata.moretti@example.com",
+    "password": "Password!"
+  },
+  "signup": {
     "email": "baillie.wright@example.com",
     "password": "jip&janneke8"
   }

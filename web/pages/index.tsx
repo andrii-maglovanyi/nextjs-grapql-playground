@@ -6,7 +6,7 @@ import Markdown from "markdown-to-jsx";
 import Link from "next/link";
 
 import withLayout from "lib/hocs/with-layout";
-import { Empty, Error, Spinner } from "components";
+import { Code, Empty, Error, Spinner } from "components";
 
 import cn from "lib/utils/class-names";
 
@@ -14,7 +14,7 @@ import { Store } from "store";
 
 const Wrapper = styled.ul`
   list-style-type: none;
-  margin: auto;
+  margin: 0 auto;
   padding: 30px 0 50px 0;
   position: relative;
   width: 90%;
@@ -245,14 +245,23 @@ const Index = withLayout(() => {
     expandedItems.includes(id) ? "expanded" : "collapsed";
   const toggleItem = (id: string) =>
     expandedItems.includes(id)
-      ? setExpendedItems([...expandedItems.filter(item => item !== id)])
+      ? setExpendedItems([...expandedItems.filter((item) => item !== id)])
       : setExpendedItems([...expandedItems, id]);
 
   const renderContentBlock = (item: Topic | Subject) => (
     <div className="content">
       <Head onClick={() => toggleItem(item.id + item.name)}>{item.name}</Head>
       <div className={"section " + isVisible(item.id + item.name)}>
-        <Markdown>{item.description}</Markdown>
+        <Markdown
+          children={item.description}
+          options={{
+            overrides: {
+              code: {
+                component: Code,
+              },
+            },
+          }}
+        />
         <Link href={`/p/${item.id}`}>
           <LessonButton title={item.name}>Quiz</LessonButton>
         </Link>

@@ -2,8 +2,6 @@ import { useState, createContext } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 
-import { auth } from "../firebase";
-
 import Auth from "./auth";
 
 import useAuth from "lib/hooks/use-auth";
@@ -97,7 +95,7 @@ export const AuthContext = createContext({
   isShowAuth: false,
   hideAuth: () => {
     return;
-  }
+  },
 });
 
 const Header: React.FC = () => {

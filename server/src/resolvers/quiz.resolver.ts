@@ -47,7 +47,7 @@ export default {
     },
   },
   Query: {
-    quiz: async (parent, { id }, { models }): Promise<Quiz> =>
-      await models.Quiz.findByPk(id),
+    quiz: async (parent, { id }, { idToken, models }): Promise<Quiz> =>
+      idToken ? await models.Quiz.findByPk(id) : null,
   },
 };

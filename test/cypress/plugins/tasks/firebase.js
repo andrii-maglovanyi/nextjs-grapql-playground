@@ -16,6 +16,9 @@ const deleteFirebaseUser = (email) =>
       console.log("Successfully deleted user");
       return true;
     })
-    .catch((error) => console.log("Error deleting user:", error));
+    .catch((error) => {
+      console.log("Error deleting user:", error);
+      return false;
+    });
 
 module.exports = { deleteFirebaseUser };

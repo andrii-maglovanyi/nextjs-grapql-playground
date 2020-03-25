@@ -17,23 +17,26 @@ export default (): [User, () => void] => {
   const { dispatch, state } = useContext(Store);
   const [getUserProgress] = useLazyQuery(GET_USER_PROGRESS, {
     fetchPolicy: "network-only",
-    onCompleted: data => {
+    onCompleted: (data) => {
       dispatch({ type: SET_USER_PROGRESS, payload: data?.progress });
-    }
+    },
   });
 
   useEffect(() => {
     const userData = localStorage.getItem("user");
     dispatch({
       type: SET_USER,
-      payload: userData ? JSON.parse(userData) : null
+      payload: userData ? { ...JSON.parse(userData), cached: true } : null,
     });
 
     auth.onAuthStateChanged(async (user: auth.FirebaseUser) => {
       let payload = null;
       if (user) {
+        const token = await auth.getIdToken();
+
         payload = {
-          email: user.email
+          email: user.email,
+          cached: false,
         };
 
         getUserProgress();

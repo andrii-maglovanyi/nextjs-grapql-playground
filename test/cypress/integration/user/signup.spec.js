@@ -1,15 +1,12 @@
 context("Signup", () => {
   beforeEach(() => {
     cy.fixture("firebase.json").as("firebase");
-    cy.visit("http://localhost:7777/");
+    cy.visit("/");
   });
 
   afterEach(() => {
     cy.get("@firebase").then((firebase) => {
-      cy.task(
-        "delete:firebaseUser",
-        firebase.emailAndPasswordAuthentication.email
-      );
+      cy.task("delete:firebaseUser", firebase.signup.email);
     });
   });
 
@@ -20,22 +17,16 @@ context("Signup", () => {
     cy.findAllByText("Sign up").click();
 
     cy.get("@firebase").then((firebase) => {
-      cy.findByLabelText("Email").type(
-        firebase.emailAndPasswordAuthentication.email
-      );
-      cy.findByLabelText("Password").type(
-        firebase.emailAndPasswordAuthentication.password
-      );
+      cy.findByLabelText("Email").type(firebase.signup.email);
+      cy.findByLabelText("Password").type(firebase.signup.password);
 
       cy.get("form").then((container) => {
         cy.findAllByText("Sign up", { container }).click();
       });
 
-      cy.findAllByText(
-        `Welcome ${firebase.emailAndPasswordAuthentication.email}`
-      ).should("exist");
+      cy.findAllByText(`Welcome ${firebase.signup.email}`).should("exist");
 
-      cy.signOutWithUI(firebase.emailAndPasswordAuthentication.email);
+      cy.signOutWithUI(firebase.signup.email);
     });
   });
 
@@ -50,19 +41,17 @@ context("Signup", () => {
           "exist"
         );
 
-        cy.findByLabelText("Email").type(
-          `${firebase.emailAndPasswordAuthentication.email}{enter}`
-        );
+        cy.findByLabelText("Email").type(`${firebase.signup.email}{enter}`);
 
         cy.findAllByText(
           "The password is invalid or the user does not have a password."
         ).should("exist");
 
         cy.findByLabelText("Password").type(
-          `${firebase.emailAndPasswordAuthentication.password}{enter}`
+          `${firebase.signup.password}{enter}`
         );
 
-        cy.signOutWithUI(firebase.emailAndPasswordAuthentication.email);
+        cy.signOutWithUI(firebase.signup.email);
       });
     });
   });

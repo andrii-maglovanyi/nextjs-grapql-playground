@@ -26,6 +26,7 @@
     "markdown-to-jsx": "^6.11.0",
     "next": "^9.3.1",
     "next-with-apollo": "^5.0.0",
+    "prismjs": "^1.19.0",
     "react-redux": "^7.2.0",
     "styled-components": "^5.0.1"
   },
@@ -34,6 +35,7 @@
     "@testing-library/jest-dom": "^5.1.1",
     "@testing-library/react": "^10.0.1",
     "@types/markdown-to-jsx": "^6.11.0",
+    "@types/prismjs": "^1.16.0",
     "@types/styled-components": "^5.0.1",
     "babel-eslint": "^10.1.0",
     "babel-plugin-styled-components": "^1.10.7",

@@ -1,4 +1,5 @@
 export { default as Button } from "./button";
+export { default as Code } from "./code";
 export { default as Empty } from "./empty";
 export { default as Error } from "./error";
 export { default as Hr } from "./hr";
