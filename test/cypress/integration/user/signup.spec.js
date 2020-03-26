@@ -12,8 +12,6 @@ context("Signup", () => {
 
   it("Should sign up a new user", () => {
     cy.findAllByText("Sign in").click();
-
-    cy.findAllByText("Sign up").should("exist");
     cy.findAllByText("Sign up").click();
 
     cy.get("@firebase").then((firebase) => {

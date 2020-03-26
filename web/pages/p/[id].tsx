@@ -168,6 +168,7 @@ const Quiz: React.FC<Props> = ({ topicId }) => {
               {[1, 2, 3, 4].map((num) => (
                 <Answer
                   className={isCorrectAnswer(num)}
+                  data-testid="answer"
                   key={num}
                   onClick={() => onSelectAnswer(num)}
                 >
